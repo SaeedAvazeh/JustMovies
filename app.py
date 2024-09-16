@@ -1,3 +1,8 @@
+pip install Flask python-dateutil
+pip install flask-sqlalchemy mysqlclient
+pip install flask-bcrypt
+pip install flask-login
+
 from flask import Flask
 from flask import SQLAlchemy
 from flask import Bcrypt
