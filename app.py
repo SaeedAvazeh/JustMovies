@@ -1,7 +1,7 @@
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from flask_bcrypt import Bcrypt
-from flask_login import LoginManager
+from flask import SQLAlchemy
+from flask import Bcrypt
+from flask import LoginManager
 
 db = SQLAlchemy()
 bcrypt = Bcrypt()
