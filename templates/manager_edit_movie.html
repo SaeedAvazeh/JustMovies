@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+    <section class='form'>
+        <h2>&nbsp;&nbsp;Edit Movie&nbsp;&nbsp;</h2>
+        <form action="{{ url_for('manager.edit_movie_post', id=current_data.id) }}" method="post">
+            <div>
+                <label>Room: <br></label>
+                <select name="room" required>
+                <option value="{{current_data.room.id}}" selected>{{current_data.room.name}}</option>
+                    {% for room in rooms %}
+                        <option value="{{room.id}}">{{room.name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div>
+                <label><br>Movie Title: <input type="text" name="title" placeholder="Enter Movie Title..." required/></label>
+            </div>
+            <div>
+                <label><br>Movie Image URL: <input type="text" name="image" placeholder="Enter Movie Image URL..." required/></label>
+            </div>
+            <div>
+                <label><br>Date:<br></label>
+                <input type="date" name="day" value="{{current_data.day}}" min="2024-09-10" max="2025-12-31" required>
+            </div>
+            <div>
+                <label><br>Time:<br></label>
+                <input type="time" name="time" value="{{current_data.time}}" required>
+            </div>
+            <div><input class='submit' type="submit" value="Edit"/></div>
+        </form>
+    </section>
+{% endblock %}

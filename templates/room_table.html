@@ -1,0 +1,23 @@
+<table class="table-room">
+    <thead>
+    <tr>
+        <th>Room Id</th>
+        <th>Name</th>
+        <th>Total Seats</th>
+        <th>Type</th>
+        <th>Seat Price</th>
+    </tr>
+    </thead>
+    <tbody>
+        {% for room in rooms %}
+            {% set roomX = "roomX"  ~ room.id  %}
+            <tr id="{{roomX}}">
+                <td>{{room.id}}</td>
+                <td>{{ room.name }}</td>
+                <td>{{ room.total_seats }}</td>
+                <td>{{ room.type }}</td>
+                <td>{{ room.seat_price }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

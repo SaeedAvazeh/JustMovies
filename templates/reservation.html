@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% if movie != None %}
+        <section class='form'>
+            <h2>&nbsp;&nbsp;Buy Ticket&nbsp;&nbsp;</h2>
+            <form action="{{ url_for('main.reservation_post') }}" method="post">
+                <div><img id="movie_image" src={{movie.image}}  width=100 style="border-radius: 15px;"></div>
+                <label><br>{{movie.title}}<br></label>
+                <div><select id="movie" name="movie" onchange='interactiveForm();'>
+                    {% for movieX in movies %}
+                        {% if movieX.id == movie.id %}
+                        <option value="{{movieX.id}}" selected><b>Day:</b>{{movieX.day.strftime('%d-%m-%Y')}} Time:{{movieX.time.strftime('%H:%M')}} Room: {{movieX.room.name}}</option>
+                        {% else %}
+                        <option value="{{movieX.id}}"><b></b>Day:</b>{{movieX.day.strftime('%d-%m-%Y')}} Time:{{movieX.time.strftime('%H:%M')}} Room: {{movieX.room.name}}</option>
+                        {% endif %}
+                    {% endfor %}
+                    </select>
+                </div>
+                <div id="more-seats">
+                    <div><label><br>Number of seats<br></label>
+                        <input type="number" name="seats" id="seats" onchange="Price();" required/>
+                    </div>
+                    <br>
+                    <div><a id="price"></a></div>
+                    <div><input class='submit' type="submit" value="Buy"/></div>
+                </div>
+            </form>
+        </section>
+    {% endif %}
+    <section class="movie">
+        <h2>&nbsp;&nbsp;Check Out Our Movies&nbsp;&nbsp;</h2>
+        {% include 'movie_table.html' %}
+    </section>
+{% endblock %}

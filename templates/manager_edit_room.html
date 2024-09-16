@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+    <section class='form'>
+        <h2>&nbsp;&nbsp;Edit Room&nbsp;&nbsp;</h2>
+        <form action="{{ url_for('manager.edit_room_post', id=current_data.id) }}" method="post">
+            <div><label>Room Name: <input type="text" name="name" placeholder="Enter Room Name..." required/></label></div>
+            <div><label>Total Seats: <input type="number" name="total_seats" placeholder="Enter Total Seats Number..." required/></label></div>
+            <div><label>Room Type: <input type="text" name="type" placeholder="Enter Room Type..." required/></label></div>
+            <div><label>Seat Price: <input type="number" name="seat_price" placeholder="Enter Room Seat Price..." required/></label></div>
+            <div><input class='submit' type="submit" value="Edit"/></div>
+        </form>
+    </section>
+{% endblock %}

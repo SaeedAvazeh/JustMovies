@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% include 'auth/error.html' %}
+    <section>
+        <h2>&nbsp;&nbsp;Rooms&nbsp;&nbsp;</h2>
+        <a class="buttom" href="{{ url_for('manager.add_room')}}" style="display:block;">Add New Room</a>
+        <br>
+        <table class="table-slidedown">
+            <thead>
+                <tr>
+                    <th>Room Id</th>
+                    <th>Name</th>
+                    <th>Total Seats</th>
+                    <th>Type</th>
+                    <th>Seat Price</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for room in rooms %}
+                    {% set roomX = "roomX"  ~ room.id  %}
+                    <tr id="{{roomX}}">
+                        <td>{{room.id}}</td>
+                        <td>{{ room.name }}</td>
+                        <td>{{ room.total_seats }}</td>
+                        <td>{{ room.type }}</td>
+                        <td>{{ room.seat_price }}</td>
+                        <td>
+                            <a class="delete" href="{{ url_for('manager.delete_room', id=room.id) }}">Delete</a> 
+                            <a class="edit" href="{{ url_for('manager.edit_room', id=room.id) }}">Edit</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+{% endblock %}

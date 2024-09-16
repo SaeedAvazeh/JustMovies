@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% include 'auth/error.html' %}
+    <section>
+        <h2>&nbsp;&nbsp;Movie&nbsp;&nbsp;</h2>
+        <a class="buttom" href="{{ url_for('manager.add_movie')}}" style="display:block;">Add New Movie</a>
+        <br>
+        <table class="table-slidedown">
+            <thead>
+            <tr>
+                <th>Movie Image</th>
+                <th>Movie Id</th>
+                <th>Room</th>
+                <th>Title</th>
+                <th>Total Seats</th>
+                <th>Seats Available</th>
+                <th>Seats Booked</th>
+                <th>Day</th>
+                <th>Time</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for movie in movies %}
+                    {% set movieX = "movieX"  ~ movie.id  %}
+                    <tr id="{{movieX}}">
+                        <td><img src={{movie.image}} width=120 style="border-radius: 15px;"></td>
+                        <td>{{ movie.id }}</td>
+                        <td>{{ movie.room.name }}</td>
+                        <td>{{ movie.title }}</td>
+                        <td>{{ movie.room.total_seats }}</td>
+                        <td>{{ movie.room.total_seats - movie.booked_seat }}</td>
+                        <td>{{ movie.booked_seat }}</td>
+                        <td>{{ movie.day.strftime('%d-%m-%Y') }}</td>
+                        <td>{{ movie.time }}</td>
+                        <td>
+                            <a class="edit" href="{{ url_for('manager.edit_movie', id=movie.id) }}">Edit</a><br><br>
+                            <a class="delete" href="{{ url_for('manager.delete_movie', id=movie.id) }}">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+{% endblock %}

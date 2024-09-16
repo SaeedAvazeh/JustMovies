@@ -1,0 +1,24 @@
+<table class="table-reservation">
+    <thead>
+    <tr>
+        <th>Movie Image</th>
+        <th>Title</th>
+        <th>Seats Reserved</th>
+        <th>Day</th>
+        <th>Time</th>
+        <th>Booked Day</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for reservation in reservations %}
+    <tr>
+        <td><img src={{reservation.movie.image}} width=120 style="border-radius: 15px;"></td>
+        <td>{{ reservation.movie.title }}</td>
+        <td>{{ reservation.num_seats }}</td>
+        <td>{{ reservation.movie.day.strftime('%d-%m-%Y') }}</td>
+        <td>{{ reservation.movie.time.strftime('%H:%M') }}</td>
+        <td>{{ reservation.date_time }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
